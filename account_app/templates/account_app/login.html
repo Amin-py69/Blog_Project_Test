@@ -7,22 +7,33 @@
     <title>login</title>
 </head>
 <body>
+<form method="post">
+    {% csrf_token %}
+    {% for message in messages %}
+
+        <div class="alert alert-success">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+            {{ message }}
+        </div>
+
+    {% endfor %}
     <div class="container">
-    <div class="card">
-        <a class="login">Log in</a>
-        <div class="inputBox">
-            <input type="text" required="required">
-            <span class="user">Username</span>
+        <div class="card">
+            <a class="login">Log in</a>
+            <div class="inputBox">
+                <input type="text" name="username" required="required">
+                <span class="user">Username</span>
+            </div>
+
+            <div class="inputBox">
+                <input type="password" name="password" required="required">
+                <span>Password</span>
+            </div>
+
+            <button class="enter">Enter</button>
+
         </div>
-
-        <div class="inputBox">
-            <input type="password" required="required">
-            <span>Password</span>
-        </div>
-
-        <button class="enter">Enter</button>
-
     </div>
-</div>
+</form>
 </body>
 </html>
