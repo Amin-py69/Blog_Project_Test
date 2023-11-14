@@ -23,6 +23,12 @@ def login_user(request):
     return render(request, 'account_app/login.html', {'form': form})
 
 
+def register_user(request):
+    if request.user.is_authenticated == True:
+        return redirect('/')
+    return render(request, 'account_app/register.html', {})
+
+
 def logout_user(request):
     logout(request)
     return redirect('/')

@@ -1,10 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>register</title>
 </head>
 <body>
-$END$
+<form method="post" >
+    {% csrf_token %}
+    {% for message in messages %}
+
+        <div class="alert alert-success">
+            <a class="close" href="#" data-dismiss="alert">×</a>
+            {{ message }}
+        </div>
+
+    {% endfor %}
+    <div class="container">
+        <div class="card">
+            <a class="login">Register</a>
+            <div class="inputBox">
+                <input type="text" name="username" required="required">
+                <span class="user">Username</span>
+            </div>
+
+            <div class="inputBox">
+                <input type="email" name="email" required="required">
+                <span>Email</span>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password1" required="required">
+                <span>Inter Password</span>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password2" required="required">
+                <span>Repeat Password</span>
+            </div>
+
+                <button class="enter">Enter</button>
+                <a class="link-primary" href="/login" style="color: #005cbf" >login</a>
+
+
+
+        </div>
+    </div>
+</form>
 </body>
 </html>
