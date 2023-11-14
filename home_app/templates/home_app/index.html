@@ -74,16 +74,16 @@
                     <li class="nav-item">
                         {% if request.user.is_authenticated %}
                             <div>
-                            <a class="Dark link" href="/admin">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                            <a class="Dark link" href='/admin'>{{ request.user.first_name }} {{ request.user.last_name }}</a>
                                 |
 
-                            <a class="Secondary link" href="/logout">logout</a>
+                            <a class="Secondary link" href="{% url 'account_app:logout' %}">logout</a>
                             </div>
                         {% else %}
                             <div>
-                                <a class="Dark link" href="/login">Login</a>
+                                <a class="Dark link" href="{% url 'account_app:login' %}">Login</a>
                                 |
-                                <a class="Dark link" href="/register">Register</a>
+                                <a class="Dark link" href="{% url 'account_app:register' %}">Register</a>
                             </div>
                         {% endif %}
                     </li>
