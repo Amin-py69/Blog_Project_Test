@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
+from blog_app.manager import Article_Publish_Blog
 
 
 # Create your models here.
@@ -19,7 +19,10 @@ class Article(models.Model):
     image = models.ImageField(upload_to='image/article')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
+    is_published = models.BooleanField(default=True)
+    status = models.BooleanField(default=True)
+    objects = models.Manager()
+    filter_manager = Article_Publish_Blog()
 
     def __str__(self):
         return f'{self.title} - {self.body[:30]}'
