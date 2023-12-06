@@ -4,6 +4,6 @@ from .models import Article
 
 # Create your views here.
 
-def post_detail(request, pk):
-    article = Article.objects.get(id=pk)
+def post_detail(request, slug):
+    article = Article.objects.get(slug=slug)
     return render(request, 'blog_app/post-details.html', {'article': article})
