@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'home_app',
     'account_app',
     'blog_app',
-    'django_cleanup.apps.CleanupConfig'
+    'django_cleanup.apps.CleanupConfig',
+    'django_social_share'
 ]
 
 MIDDLEWARE = [
