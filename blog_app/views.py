@@ -7,6 +7,7 @@ from .models import Article, Category
 
 def post_detail(request, slug):
     article = Article.objects.get(slug=slug)
+
     return render(request, 'blog_app/post-details.html', {'article': article})
 
 

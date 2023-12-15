@@ -36,3 +36,14 @@ class Article(models.Model):
 
     def __str__(self):
         return f'{self.title} - {self.body[:30]}'
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comment')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment')
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='relies')
+    body = models.TextField()
+    created_add = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.body[:50]
