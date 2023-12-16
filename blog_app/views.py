@@ -1,13 +1,16 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Category
+from .models import Article, Category, Comment
 
 
 # Create your views here.
 
 def post_detail(request, slug):
     article = Article.objects.get(slug=slug)
-
+    if request.method == 'POST':
+        parent_id = request.POST.get('parent_id')
+        body = request.POST.get('body')
+        Comment.objects.create(body=body, article=article, parent_id=parent_id, user=request.user)
     return render(request, 'blog_app/post-details.html', {'article': article})
 
 
