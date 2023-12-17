@@ -66,7 +66,7 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'list' %} active {% endif %}" href="{% url 'blog_app:list' %}">Blog Entries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="{% url 'blog_app:contact_us' %}">Contact Us</a>
                     </li>
                     <li class="nav-item">
                         {% if request.user.is_authenticated %}
