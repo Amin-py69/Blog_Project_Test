@@ -1,7 +1,8 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Category, Comment
-from .forms import ContactUs
+from .models import Article, Category, Comment, Message
+from .forms import ContactUs, MessageForm
+
 
 # Create your views here.
 
@@ -40,15 +41,18 @@ def search(request):
 
 def contactus(request):
     if request.method == 'POST':
-        form = ContactUs(request.POST)
+        form = MessageForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            title = form.cleaned_data.get('title')
+            text = form.cleaned_data.get('text')
+            Message.objects.create(name=name, email=email, title=title, text=text)
 
-        else:
-            form = ContactUs(request.POST)
+        # instance = form.save(commit=False)
+        # instance.name = 'ali'
+        # instance.save()
+
     else:
-        form = ContactUs()
+        form = MessageForm()
     return render(request, 'blog_app/contact-us.html', {'form': form})
