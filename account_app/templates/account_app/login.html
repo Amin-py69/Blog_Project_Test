@@ -20,13 +20,14 @@
     <div class="container">
         <div class="card">
             <a class="login">Log in</a>
+            {{ form.errors }}
             <div class="inputBox">
-                <input type="text" name="username" required="required">
+                {{ form.username }}
                 <span class="user">Username</span>
             </div>
 
             <div class="inputBox">
-                <input type="password" name="password" required="required">
+                {{ form.password }}
                 <span>Password</span>
             </div>
 
