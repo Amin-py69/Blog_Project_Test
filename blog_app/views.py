@@ -2,6 +2,9 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from .models import Article, Category, Comment, Message
 from .forms import ContactUs, MessageForm
+from django.views.generic.list import ListView
+# from django.contrib.auth.mixins import LoginRequiredMixin
+from . mixins import LoadLogin
 
 
 # Create your views here.
@@ -56,3 +59,13 @@ def contactus(request):
     else:
         form = MessageForm()
     return render(request, 'blog_app/contact-us.html', {'form': form})
+
+
+class PostListView(LoadLogin, ListView):
+    model = Article
+    context_object_name = 'articles'
+    paginate_by = 1
+    template_name = 'blog_app/post-list.html'
+    queryset = Article.objects.filter(is_published=True)
+
+

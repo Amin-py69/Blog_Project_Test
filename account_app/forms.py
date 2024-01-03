@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate
 from django.forms import ValidationError
+from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
@@ -12,3 +13,9 @@ class LoginForm(forms.Form):
         if user is not None:
             return self.cleaned_data.get('password')
         raise ValidationError('username or password is wrong', code='invalid_info')
+
+
+class EditProfileUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'username')
