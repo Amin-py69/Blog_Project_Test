@@ -1,10 +1,15 @@
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Category, Comment, Message
+from django.template.loader import render_to_string
+from .models import Article, Category, Comment, Message, Like
 from .forms import ContactUs, MessageForm
 from django.views.generic.list import ListView
 # from django.contrib.auth.mixins import LoginRequiredMixin
-from . mixins import LoadLogin
+from .mixins import LoadLogin
+from django.views.generic.detail import DetailView
+from django_ajax.decorators import ajax
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -69,3 +74,16 @@ class PostListView(LoadLogin, ListView):
     queryset = Article.objects.filter(is_published=True)
 
 
+class PostDetailView(DetailView):
+    model = Article
+    template_name = 'blog_app/post-details.html'
+
+
+@login_required
+def like(request, slug, pk):
+    if request.method == 'POST':
+        if request.user.like(article_id=pk, article__slug=slug).exists():
+            likes = Like.objects.get(user_id=request.user.id, article__slug=slug)
+            likes.delete()
+        else:
+            Like.objects.create(article_id=pk, user_id=request.user.id)

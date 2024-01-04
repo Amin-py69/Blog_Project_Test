@@ -70,9 +70,11 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <ul class="post-tags">
-                                                        <li><i class="fa fa-tags"></i></li>
-                                                        <li><a href="#">Best Templates</a>,</li>
-                                                        <li><a href="#">TemplateMo</a></li>
+{#                                                        <li><i class="fa fa-tags"></i></li>#}
+                                                        <div id="like-section">
+                                                            <li><a href="#" class="fa fa-heart"></a><div>2</div></li>
+{#                                                            {% include 'blog_app/like_section.html' %}#}
+                                                        </div>
                                                     </ul>
                                                 </div>
                                                 <div class="col-6">
@@ -135,7 +137,6 @@
                                                     {% endfor %}
                                                 {% endif %}
                                             {% endfor %}
-
 
 
                                         </ul>

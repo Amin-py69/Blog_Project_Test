@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'account_app',
     'blog_app',
     'django_cleanup.apps.CleanupConfig',
+    'django_ajax',
     'django_social_share'
 ]
 
